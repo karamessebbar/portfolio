@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #081b29;
+            color: #ededed;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            padding: 20px 10%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            position: relative;
+            font-size: 25px;
+            color: aliceblue;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #081b29;
+            animation: showRight 1s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar a {
+            font-size: 18px;
+            color: rgb(151, 233, 246);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00abf0;
+        }
+
+        .contact {
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .contact h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 18px;
+            margin: 20px 0 40px;
+        }
+
+        #computer-container {
+            width: 100%;
+            height: 50vh;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">KARAM</a>
+        <nav class="navbar">
+            <a href="acceuil.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="project.html">PROJECTS</a>
+            <a href="contacts.html" class="active">CONTACT</a>
+        </nav>
+    </header>
+
+    <div class="contact">
+        <h1>Contact Information</h1>
+        <p>Email: <a href="mailto:essebbarkaram@gmail.com">essebbarkaram@gmail.com</a></p>
+        <p>Phone: +33665017223</p>
+    </div>
+
+    <div id="computer-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('computer-container').appendChild(renderer.domElement);
+
+        // Load the texture image (replace 'logo.png' with your image)
+        // Load the texture image (replace 'logo.png' with your image)
+const loader = new THREE.TextureLoader();
+const texture = loader.load('htmllogo.png'); // Replace with the path to your image.
+
+// Create a material with the texture
+const material = new THREE.MeshBasicMaterial({ map: texture });
+
+// Create the cube with the texture
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const cube = new THREE.Mesh(geometry, material);
+
+// Adjust the position and rotation of the cube
+cube.position.set(0, 0, 0); // Set the position as needed.
+cube.rotation.set(0, 0, 0); // Set the rotation as needed.
+
+scene.add(cube);
+
+
+        // Adjust the position and rotation of the cube
+        cube.position.set(0, 0, 0); // Set the position as needed.
+        cube.rotation.set(0, 0, 0); // Set the rotation as needed.
+
+        camera.position.z = 5;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>
